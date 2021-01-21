@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace TGS.Challenge
 {
@@ -14,9 +15,16 @@ namespace TGS.Challenge
      */
     public class VowelCount
     {
+        private char[] vowels = new char[5] { 'a', 'e', 'i', 'o', 'u' };
+
         public int Count(string value)
         {
-            return -1;
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException("You must add a value to count the vowels");
+            }
+
+            return value.ToLower().Count(c => vowels.Contains(c));
         }
     }
 }
